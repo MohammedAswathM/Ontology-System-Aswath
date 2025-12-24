@@ -2,17 +2,7 @@ const express = require('express');
 const router = express.Router();
 const kgService = require('../services/kgService');
 
-// Initialize base ontology
-router.post('/initialize', async (req, res) => {
-    try {
-        const result = await kgService.initializeBaseOntology();
-        res.json(result);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-// Get graph statistics
+// Get Graph Statistics
 router.get('/stats', async (req, res) => {
     try {
         const stats = await kgService.getGraphStats();
@@ -22,11 +12,21 @@ router.get('/stats', async (req, res) => {
     }
 });
 
-// Get visualization data
+// Get Visualization Data (Nodes & Edges)
 router.get('/visualization', async (req, res) => {
     try {
         const data = await kgService.getVisualizationData();
         res.json(data);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Initialize Base Ontology
+router.post('/init', async (req, res) => {
+    try {
+        const result = await kgService.initializeBaseOntology();
+        res.json(result);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

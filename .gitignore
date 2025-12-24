@@ -18,3 +18,6 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+chroma_data/
+.DS_Store

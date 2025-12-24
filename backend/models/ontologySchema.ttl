@@ -1,0 +1,29 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix biz: <http://example.org/business-ontology#> .
+
+# Ontology definition
+biz:BusinessOntology rdf:type owl:Ontology ;
+    rdfs:label "Generic Business Ontology" ;
+    rdfs:comment "A foundational ontology for business entities and relationships" .
+
+# Classes
+biz:Organization rdf:type owl:Class ; rdfs:label "Organization" .
+biz:Department rdf:type owl:Class ; rdfs:label "Department" ; rdfs:subClassOf biz:OrganizationalUnit .
+biz:Role rdf:type owl:Class ; rdfs:label "Role" .
+biz:Process rdf:type owl:Class ; rdfs:label "Process" .
+biz:Resource rdf:type owl:Class ; rdfs:label "Resource" .
+biz:Product rdf:type owl:Class ; rdfs:label "Product" .
+biz:Customer rdf:type owl:Class ; rdfs:label "Customer" .
+biz:Metric rdf:type owl:Class ; rdfs:label "Metric" .
+
+# Object Properties
+biz:hasDepartment rdf:type owl:ObjectProperty ; rdfs:domain biz:Organization ; rdfs:range biz:Department .
+biz:hasRole rdf:type owl:ObjectProperty ; rdfs:domain biz:Department ; rdfs:range biz:Role .
+biz:executes rdf:type owl:ObjectProperty ; rdfs:domain biz:Department ; rdfs:range biz:Process .
+biz:requires rdf:type owl:ObjectProperty ; rdfs:domain biz:Process ; rdfs:range biz:Resource .
+biz:produces rdf:type owl:ObjectProperty ; rdfs:domain biz:Process ; rdfs:range biz:Product .
+biz:responsibleFor rdf:type owl:ObjectProperty ; rdfs:domain biz:Role ; rdfs:range biz:Process .
+biz:serves rdf:type owl:ObjectProperty ; rdfs:domain biz:Organization ; rdfs:range biz:Customer .
+biz:measures rdf:type owl:ObjectProperty ; rdfs:domain biz:Organization ; rdfs:range biz:Metric .
